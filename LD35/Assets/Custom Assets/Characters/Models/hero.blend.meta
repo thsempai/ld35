@@ -14,6 +14,27 @@ ModelImporter:
     100012: foot_right
     100014: hand_left
     100016: hand_right
+    100018: Armature
+    100020: Bone
+    100022: Bone_001
+    100024: Bone_002
+    100026: Bone_003
+    100028: Bone_004
+    100030: Bone_005
+    100032: Bone_006
+    100034: Bone_007
+    100036: Bone_008
+    100038: Bone_009
+    100040: hero
+    100042: arm_left
+    100044: arm_right
+    100046: cap_left
+    100048: cap_right
+    100050: leg_left
+    100052: leg_right
+    100054: neck
+    100056: pom-pom_left
+    100058: pom-pom_right
     400000: //RootNode
     400002: body
     400004: head
@@ -23,6 +44,27 @@ ModelImporter:
     400012: foot_right
     400014: hand_left
     400016: hand_right
+    400018: Armature
+    400020: Bone
+    400022: Bone_001
+    400024: Bone_002
+    400026: Bone_003
+    400028: Bone_004
+    400030: Bone_005
+    400032: Bone_006
+    400034: Bone_007
+    400036: Bone_008
+    400038: Bone_009
+    400040: hero
+    400042: arm_left
+    400044: arm_right
+    400046: cap_left
+    400048: cap_right
+    400050: leg_left
+    400052: leg_right
+    400054: neck
+    400056: pom-pom_left
+    400058: pom-pom_right
     2300000: //RootNode
     2300002: body
     2300004: head
@@ -53,6 +95,7 @@ ModelImporter:
     4300018: hero
     7400000: Default Take
     9500000: //RootNode
+    13700000: hero
   materials:
     importMaterials: 1
     materialName: 0
