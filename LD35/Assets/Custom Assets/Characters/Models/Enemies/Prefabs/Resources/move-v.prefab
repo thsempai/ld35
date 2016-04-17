@@ -12,6 +12,8 @@ GameObject:
   - 23: {fileID: 2394546}
   - 95: {fileID: 9540364}
   - 114: {fileID: 11432926}
+  - 65: {fileID: 6553128}
+  - 114: {fileID: 11426614}
   m_Layer: 0
   m_Name: move-v
   m_TagString: Untagged
@@ -92,6 +94,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 170506}
   m_Mesh: {fileID: 4300000, guid: 9f7d13404a8e06d43892e9adf5bb6b67, type: 3}
+--- !u!65 &6553128
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 170506}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.000001, y: 4.765159, z: 2.0000005}
+  m_Center: {x: -0.00000047683716, y: 0, z: 1.0000002}
 --- !u!95 &9540364
 Animator:
   serializedVersion: 3
@@ -109,6 +123,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11426614
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 170506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49a93920225c9914fb11755651365d28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  headManager: {fileID: 0}
 --- !u!114 &11432926
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -120,7 +147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 928be493f49c5ec439524e5dca11ed99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -13,6 +13,7 @@ public class MonsterPartManager : MonoBehaviour {
     GameObject headObject;
 
     void Start () {
+        MonsterGeneration();
     }
     
     // Update is called once per frame

@@ -12,6 +12,8 @@ GameObject:
   - 23: {fileID: 2330414}
   - 95: {fileID: 9508310}
   - 114: {fileID: 11472708}
+  - 65: {fileID: 6502896}
+  - 114: {fileID: 11493142}
   m_Layer: 0
   m_Name: shooter
   m_TagString: Untagged
@@ -65,6 +67,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 144084}
   m_Mesh: {fileID: 4300000, guid: 3212cddf1528a394e9d526bd0aa51070, type: 3}
+--- !u!65 &6502896
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 144084}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.470188, y: 2.0000014, z: 2.0000014}
+  m_Center: {x: -0.23509368, y: -0.00000020338689, z: 1.0000002}
 --- !u!95 &9508310
 Animator:
   serializedVersion: 3
@@ -93,7 +107,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 928be493f49c5ec439524e5dca11ed99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &11493142
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 144084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbaf0ce489ec2654eabed235cb018b78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  baseManager: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

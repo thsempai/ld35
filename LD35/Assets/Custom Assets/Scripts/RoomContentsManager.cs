@@ -11,6 +11,8 @@ public class RoomContentsManager : MonoBehaviour {
     private int monsterMax = 2;
     public bool open;
     public Vector2 maxOffset = new Vector2(15, 9);
+
+    public List<GameObject> monsters = new List<GameObject>();
     // Use this for initialization
     void Start () {
         doors = new GameObject[4];
@@ -41,7 +43,14 @@ public class RoomContentsManager : MonoBehaviour {
         if(!noMonster){
             int monsterNumber = Random.Range(1,monsterMax + 1);
             for(int index=0; index < monsterNumber; index++){
-                GameObject monsterObject = Instantiate(Resources.Load("monster", typeof(GameObject))) as GameObject;
+                GameObject monsterObject;
+                if(manager.inMonsterMode){
+                    monsterObject = Instantiate(Resources.Load("dummy", typeof(GameObject))) as GameObject;
+                }
+                else{
+                    monsterObject = Instantiate(Resources.Load("monster", typeof(GameObject))) as GameObject;
+                }
+                monsters.Add(monsterObject);
                 Vector3 monsterPosition;
                 do{
                     dx = Random.Range(0, (int) maxOffset.x + 1);
@@ -54,40 +63,49 @@ public class RoomContentsManager : MonoBehaviour {
                 monsterObject.transform.position = monsterPosition;
                 monsterObject.transform.parent = transform;
 
-                MonsterPartManager partManager = monsterObject.GetComponent<MonsterPartManager>();
-                partManager.color = manager.GenerateColor();
+                if(!manager.inMonsterMode){
+                    MonsterPartManager partManager = monsterObject.GetComponent<MonsterPartManager>();
+                    partManager.color = manager.GenerateColor();
+                    int baseRnd = Random.Range(0, 3);
+                    int headRnd = Random.Range(0, 3);
 
-                int baseRnd = Random.Range(0, 3);
-                int headRnd = Random.Range(0, 3);
+                    switch(baseRnd){
+                        case 0: partManager.monsterBase = "stable";break;
+                        case 1: partManager.monsterBase = "move-v";break;
+                        case 2: partManager.monsterBase = "move-h";break;
+                    }
 
-                switch(baseRnd){
-                    case 0: partManager.monsterBase = "stable";break;
-                    case 1: partManager.monsterBase = "move-v";break;
-                    case 2: partManager.monsterBase = "move-h";break;
+                    switch(headRnd){
+                        case 0: partManager.monsterHead = "agressive";break;
+                        case 1: partManager.monsterHead = "watcher";break;
+                        case 2: partManager.monsterHead = "shooter";break;
+                    }
+                    partManager.MonsterGeneration();
                 }
-
-                switch(headRnd){
-                    case 0: partManager.monsterHead = "agressive";break;
-                    case 1: partManager.monsterHead = "watcher";break;
-                    case 2: partManager.monsterHead = "shooter";break;
-                }
-
-                partManager.MonsterGeneration();
-
             }
         }
-
     }
     
     // Update is called once per frame
     void Update () {
         OpenRoom(open);
+        foreach(GameObject monster in monsters){
+            try{
+
+            monster.SetActive(manager.currentRoom == gameObject);
+            }
+            catch(MissingReferenceException mre){
+            }
+        }
+
     }
 
     public void OnTriggerEnter(Collider other){
         if(other.gameObject.tag == "Player"){
             open = false;
             button.GetComponent<ButtonManager>().Off();
+            manager.previousRoom.GetComponent<BoxCollider>().enabled = true;
+            GetComponent<BoxCollider>().enabled = false;
         }
     }
 
