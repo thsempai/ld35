@@ -38,7 +38,6 @@ public class RoomsManager : MonoBehaviour {
     private void AddRoom(Vector2 roomPosition, Quaternion rotation){
         GameObject newRoom;
         if(rooms.TryGetValue(roomPosition, out newRoom)){
-
         }
         else{
             Vector3 newPosition = new Vector3(roomPosition.x * offset.x, 0f, roomPosition.y * offset.y);
@@ -46,6 +45,7 @@ public class RoomsManager : MonoBehaviour {
             rooms[roomPosition] = newRoom;
             reverseRooms[newRoom] = roomPosition;
         }
+        OpenRoom(newRoom);
     }
 
     public void ExitRoom(GameObject exitRoom, Direction direction){
@@ -76,4 +76,8 @@ public class RoomsManager : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    public void OpenRoom(GameObject room){
+        room.GetComponent<RoomContentsManager>().OpenRoom(true);
+    }
 }
