@@ -3,13 +3,11 @@ using System.Collections;
 
 public class MonsterColorManager : MonoBehaviour {
 
-    public Color color;
     // Use this for initialization
     void Start () {
-        ResetColor();
     }
     
-    public void ResetColor()
+    public void ResetColor(Color color)
     {
     GetComponent<Renderer>().material.SetColor("_Color",color);
     }

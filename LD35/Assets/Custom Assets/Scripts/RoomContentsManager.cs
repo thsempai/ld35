@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class RoomContentsManager : MonoBehaviour {
 
     public GameObject[] doors;
     public GameObject button;
-    //private RoomsManager manager;
+    public bool noMonster = false;
+    private RoomsManager manager;
+    private int monsterMax = 2;
     public bool open;
-    public Vector2 buttonMaxOffset = new Vector2(15, 9);
+    public Vector2 maxOffset = new Vector2(15, 9);
     // Use this for initialization
     void Start () {
         doors = new GameObject[4];
@@ -16,19 +19,64 @@ public class RoomContentsManager : MonoBehaviour {
         doors[2] = transform.FindChild("east door").gameObject;
         doors[3] = transform.FindChild("west door").gameObject;
 
-        //manager = GameObject.Find("generic").GetComponent<RoomsManager>();
+        List<Vector3> positionAlreayUsed = new List<Vector3>();
+        manager = GameObject.Find("generic").GetComponent<RoomsManager>();
 
         button = transform.FindChild("button").gameObject;
 
         //random place for button
-        int dx = Random.Range(0, (int) buttonMaxOffset.x + 1);
-        int dz = Random.Range(0, (int) buttonMaxOffset.y + 1);
+        int dx = Random.Range(0, (int) maxOffset.x + 1);
+        int dz = Random.Range(0, (int) maxOffset.y + 1);
 
-        Vector3 buttonPosition = button.transform.position;
+        Vector3 origin = button.transform.position;
+        Vector3 buttonPosition = origin;
+
         buttonPosition.x = buttonPosition.x + 1.955f * (float)dx;
         buttonPosition.z = buttonPosition.z - 1.955f * (float)dz;
 
         button.transform.position = buttonPosition;
+        positionAlreayUsed.Add(buttonPosition);
+
+
+        if(!noMonster){
+            int monsterNumber = Random.Range(1,monsterMax + 1);
+            for(int index=0; index < monsterNumber; index++){
+                GameObject monsterObject = Instantiate(Resources.Load("monster", typeof(GameObject))) as GameObject;
+                Vector3 monsterPosition;
+                do{
+                    dx = Random.Range(0, (int) maxOffset.x + 1);
+                    dz = Random.Range(0, (int) maxOffset.y + 1);
+                    monsterPosition = origin;
+                    monsterPosition.x = monsterPosition.x + 1.955f * (float)dx;
+                    monsterPosition.z = monsterPosition.z - 1.955f * (float)dz;
+                }
+                while(positionAlreayUsed.Contains(monsterPosition));
+                monsterObject.transform.position = monsterPosition;
+                monsterObject.transform.parent = transform;
+
+                MonsterPartManager partManager = monsterObject.GetComponent<MonsterPartManager>();
+                partManager.color = manager.GenerateColor();
+
+                int baseRnd = Random.Range(0, 3);
+                int headRnd = Random.Range(0, 3);
+
+                switch(baseRnd){
+                    case 0: partManager.monsterBase = "stable";break;
+                    case 1: partManager.monsterBase = "move-v";break;
+                    case 2: partManager.monsterBase = "move-h";break;
+                }
+
+                switch(headRnd){
+                    case 0: partManager.monsterHead = "agressive";break;
+                    case 1: partManager.monsterHead = "watcher";break;
+                    case 2: partManager.monsterHead = "shooter";break;
+                }
+
+                partManager.MonsterGeneration();
+
+            }
+        }
+
     }
     
     // Update is called once per frame

@@ -61,7 +61,6 @@ public class RoomsManager : MonoBehaviour {
             // change color
             foreach(Material RoomMaterial in newRoom.GetComponent<Renderer>().materials){
                 string materialName = RoomMaterial.name.Replace("(Instance)","");
-                print(materialName);
                 if(materialName == "wall-decored" || materialName == "ground")
                     RoomMaterial.SetColor("_Color", Color.yellow);
                     RoomMaterial.SetColor("_EmissionColor", color);
