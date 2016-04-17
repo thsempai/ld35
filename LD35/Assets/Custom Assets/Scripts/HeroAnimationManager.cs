@@ -16,5 +16,11 @@ public class HeroAnimationManager : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         animator.SetFloat("speed", Mathf.Abs(hero_rigidbody.velocity.x));
+        if(Input.GetKeyDown("space")){
+             animator.SetBool("attack", true);
+        }
+        if(Input.GetKeyUp("space")){
+             animator.SetBool("attack", false);
+        }
     }
 }

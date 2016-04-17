@@ -46,7 +46,7 @@ public class ButtonManager : MonoBehaviour {
 
 
     void OnTriggerEnter(Collider other){
-        if(other.gameObject.tag == "Player"){
+        if(other.gameObject.tag == "Player" || other.gameObject.tag == "Weapon"){
             On();
         }
 
