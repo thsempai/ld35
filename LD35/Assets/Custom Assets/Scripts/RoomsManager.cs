@@ -29,13 +29,26 @@ public class RoomsManager : MonoBehaviour {
         Vector2 westRoomPosition = new Vector2(x - 1, y);
         Vector2 eastRoomPosition = new Vector2(x + 1, y);
 
-        AddRoom(northRoomPosition, originRoom.transform.rotation);
-        AddRoom(southRoomPosition, originRoom.transform.rotation);
-        AddRoom(westRoomPosition, originRoom.transform.rotation);
-        AddRoom(eastRoomPosition, originRoom.transform.rotation);
+        Color color;
+
+        color = GenerateColor();
+
+        AddRoom(northRoomPosition, originRoom.transform.rotation, color);
+
+        color = GenerateColor();
+
+        AddRoom(southRoomPosition, originRoom.transform.rotation, color);
+
+        color = GenerateColor();
+
+        AddRoom(westRoomPosition, originRoom.transform.rotation, color);
+
+        color = GenerateColor();
+
+        AddRoom(eastRoomPosition, originRoom.transform.rotation, color);
     }
 
-    private void AddRoom(Vector2 roomPosition, Quaternion rotation){
+    private void AddRoom(Vector2 roomPosition, Quaternion rotation, Color color){
         GameObject newRoom;
         if(rooms.TryGetValue(roomPosition, out newRoom)){
         }
@@ -44,10 +57,32 @@ public class RoomsManager : MonoBehaviour {
             newRoom = Instantiate(Resources.Load("room", typeof(GameObject)), newPosition, rotation) as GameObject;
             rooms[roomPosition] = newRoom;
             reverseRooms[newRoom] = roomPosition;
+
+            // change color
+            foreach(Material RoomMaterial in newRoom.GetComponent<Renderer>().materials){
+                string materialName = RoomMaterial.name.Replace("(Instance)","");
+                print(materialName);
+                if(materialName == "wall-decored" || materialName == "ground")
+                    RoomMaterial.SetColor("_Color", Color.yellow);
+                    RoomMaterial.SetColor("_EmissionColor", color);
+            }
         }
         OpenRoom(newRoom);
     }
 
+
+    public Color GenerateColor(){
+        float r;
+        float g;
+        float b;
+        Color color;
+
+        r = (float)Random.Range(0, 11) /10f;
+        g = (float)Random.Range(0, 11) /10f;
+        b = (float)Random.Range(0, 11) /10f;
+        color = new Color(r, g, b, 1f);
+        return color;
+    }
     public void ExitRoom(GameObject exitRoom, Direction direction){
         Vector2 exitToOffset = new Vector2(0,0);
         Vector2 exitRoomPosition = reverseRooms[exitRoom];
