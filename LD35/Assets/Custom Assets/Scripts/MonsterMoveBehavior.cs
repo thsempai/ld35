@@ -61,6 +61,8 @@ public class MonsterMoveBehavior : MonoBehaviour {
     }
     // Update is called once per frame
     void Update () {
+        float x = 0f;
+        float z = 0f;
         if(type != MoveType.stable){
             if(Vector3.Distance(transform.position, player.transform.position) <= distanceReact){
                 float espace = Time.deltaTime * speed;
@@ -72,9 +74,8 @@ public class MonsterMoveBehavior : MonoBehaviour {
                     if(distance < 0){
                         espace *= -1;
                     }
-                    Vector3 position = transform.position;
-                    position.z += espace;
-                    transform.position = position;
+                    z = espace;
+
                 }
                 if(type == MoveType.moveH||type == MoveType.moveHV){
                     float distance = player.transform.position.x - transform.position.x;
@@ -84,10 +85,12 @@ public class MonsterMoveBehavior : MonoBehaviour {
                     if(distance < 0){
                         espace *= -1;
                     }
-                    Vector3 position = transform.position;
-                    position.x += espace;
-                    transform.position = position;
+                    x = espace;
                 }
+                Vector3 position = transform.position;
+                position.z += z;
+                position.x += x;
+                transform.position = position;
             }
         }
     }
