@@ -16,7 +16,7 @@ GameObject:
   - 114: {fileID: 11442672}
   m_Layer: 0
   m_Name: watcher
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,6 +110,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   baseManager: {fileID: 0}
+  player: {fileID: 0}
+  RotationSpeed: 5
 --- !u!114 &11482814
 MonoBehaviour:
   m_ObjectHideFlags: 1

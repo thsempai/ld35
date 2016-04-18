@@ -16,7 +16,7 @@ GameObject:
   - 114: {fileID: 11491658}
   m_Layer: 0
   m_Name: agressive
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,6 +121,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   baseManager: {fileID: 0}
+  player: {fileID: 0}
+  RotationSpeed: 5
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -16,7 +16,7 @@ GameObject:
   - 114: {fileID: 11426614}
   m_Layer: 0
   m_Name: move-v
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,6 +136,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   headManager: {fileID: 0}
+  distanceReact: 18
+  speed: 5
+  withoutHead: 0
+  player: {fileID: 0}
 --- !u!114 &11432926
 MonoBehaviour:
   m_ObjectHideFlags: 1
